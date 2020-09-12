@@ -27,5 +27,7 @@ https://www.sestek.com/data-sheets/
 https://cloud.google.com/speech-to-text/
 
 ### CONTROL COMMAND
+
 alsamixer
+
 amixer
