@@ -37,6 +37,7 @@
 - 🔄 **Bidirectional Communication** - Speech-to-Text & Text-to-Speech
 - ⚡ **Low Latency** - Optimized for real-time applications
 - 🎨 **Multiple APIs** - Google, Azure, AWS support ready
+- 🖥️ **Modern CLI** - Rich terminal UI with Typer & Rich
 
 </td>
 <td>
@@ -45,9 +46,10 @@
 - 🧠 **AI-Powered** - Google Cloud AI integration
 - 🔊 **Noise Cancellation** - Ambient noise adjustment
 - 📊 **Custom Sample Rates** - Configurable audio parameters
-- 🔌 **Offline Mode** - CMU Sphinx support
+- 🧪 **Type Hints** - Full type annotations
 - 🎛️ **Audio Controls** - ALSA mixer integration
 - 📝 **Multiple Outputs** - Text, JSON, structured data
+- 🔧 **Modern Tooling** - Hatch, pre-commit, pytest
 
 </td>
 </tr>
@@ -108,87 +110,105 @@ pip install SpeechRecognition PyAudio pyttsx3
 
 > **Note**: On Windows, you may need to install [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/) for PyAudio.
 
+For detailed installation instructions, see [INSTALL.md](INSTALL.md).
+
 ---
 
 ## 💻 Usage
 
-### Example 1: Basic Speech Recognition
+### 🚀 Quick Start (CLI)
 
-```python
-import speech_recognition as sr
+```bash
+# Install the modern CLI
+pip install -e .
 
-# Initialize recognizer
-r = sr.Recognizer()
+# Listen once
+speech-to-text-ai listen
 
-# Use microphone as source
-with sr.Microphone() as source:
-    print("🎤 Say something!")
-    audio = r.listen(source)
+# Continuous recognition
+speech-to-text-ai continuous
 
-    try:
-        text = r.recognize_google(audio, language='en-US')
-        print(f"✅ You said: {text}")
-    except sr.UnknownValueError:
-        print("❌ Could not understand audio")
-    except sr.RequestError as e:
-        print(f"⚠️ Error: {e}")
+# Interactive mode (with voice feedback)
+speech-to-text-ai interactive
+
+# List available devices
+speech-to-text-ai devices
+
+# Show all commands
+speech-to-text-ai --help
 ```
 
-### Example 2: Advanced Configuration
+### 📖 CLI Examples
 
-```python
-# Custom configuration
-mic_name = 'default'
-sample_rate = 48000
-chunk_size = 2048
+#### 🎧 Single Recognition
 
-r = sr.Recognizer()
+```bash
+# Basic usage
+speech-to-text-ai listen
 
-with sr.Microphone(
-    device_index=device_id,
-    sample_rate=sample_rate,
-    chunk_size=chunk_size
-) as source:
-    r.adjust_for_ambient_noise(source)
-    audio = r.listen(source, timeout=15)
-    text = r.recognize_google(audio, language='TR')
+# Specify language
+speech-to-text-ai listen --language tr-TR
+
+# Save to file
+speech-to-text-ai listen -l en-US -o transcript.txt
+
+# Custom microphone and timeout
+speech-to-text-ai listen --mic "USB Audio" --timeout 30
 ```
 
-### Example 3: Interactive Voice Assistant
+#### 🔄 Continuous Mode
+
+```bash
+# Continuous recognition
+speech-to-text-ai continuous -l en-US
+
+# Save all results to file
+speech-to-text-ai continuous -l tr-TR -o meeting_notes.txt
+
+# Limit to 10 iterations
+speech-to-text-ai continuous --max 10
+```
+
+#### 💬 Interactive Assistant
+
+```bash
+# Start interactive mode
+speech-to-text-ai interactive -l en-US
+
+# With custom settings
+speech-to-text-ai interactive -l tr-TR --mic "Built-in Microphone"
+```
+
+### 🐍 Python API
 
 ```python
-import speech_recognition as sr
-import pyttsx3
+from speech_to_text_ai import SpeechRecognizer, MicrophoneManager, TextToSpeech
 
-def speak(text):
-    engine = pyttsx3.init()
-    engine.say(text)
-    engine.runAndWait()
+# Initialize components
+mic_manager = MicrophoneManager(device_name="default")
+recognizer = SpeechRecognizer(language="en-US", mic_manager=mic_manager)
 
-r = sr.Recognizer()
+# Single recognition
+result = recognizer.recognize_once()
+if result.success:
+    print(f"✓ Recognized: {result.text}")
+else:
+    print(f"✗ Error: {result.error}")
 
+# Interactive mode with TTS
+tts = TextToSpeech()
 while True:
-    with sr.Microphone() as source:
-        print("🎤 Listening...")
-        audio = r.listen(source)
-
-        try:
-            text = r.recognize_google(audio, language='en-US')
-            print(f"📝 You said: {text}")
-            speak(text)
-        except:
-            print("❌ Error occurred")
+    result = recognizer.recognize_once()
+    if result.success:
+        print(f"You said: {result.text}")
+        tts.speak(result.text)
 ```
 
----
+### 📚 More Documentation
 
-## 📂 Examples
-
-| File | Description | Use Case |
-|------|-------------|----------|
-| `google_api_1.py` | Basic speech recognition | Simple voice-to-text conversion |
-| `google_api_2.py` | Advanced configuration | Production applications with custom settings |
-| `google_api_3_return.py` | Interactive voice system | Voice assistants, chatbots |
+- [CLI Usage Guide](CLI_USAGE.md) - Complete CLI documentation
+- [Installation Guide](INSTALL.md) - Detailed installation instructions
+- [Legacy Examples](legacy/) - Original Python scripts (google_api_*.py)
 
 ---
 
@@ -253,15 +273,52 @@ while True:
 
 ---
 
+## 📁 Project Structure
+
+```
+Speech-To-Text/
+├── src/
+│   └── speech_to_text_ai/        # Main package
+│       ├── __init__.py            # Package initialization
+│       ├── __main__.py            # Entry point
+│       ├── cli.py                 # CLI interface (Typer)
+│       ├── core/                  # Core modules
+│       │   ├── recognizer.py      # Speech recognition engine
+│       │   ├── microphone.py      # Microphone management
+│       │   └── speaker.py         # Text-to-speech
+│       ├── config/                # Configuration
+│       │   └── settings.py        # Settings management
+│       └── utils/                 # Utilities
+│           └── logger.py          # Logging setup
+├── tests/                         # Test suite
+│   ├── test_recognizer.py
+│   ├── test_microphone.py
+│   ├── test_speaker.py
+│   └── test_config.py
+├── legacy/                        # Original Python scripts
+│   ├── google_api_1.py
+│   ├── google_api_2.py
+│   └── google_api_3_return.py
+├── pyproject.toml                 # Project metadata (Hatch)
+├── .pre-commit-config.yaml        # Pre-commit hooks
+├── Makefile                       # Development commands
+├── README.md                      # This file
+├── INSTALL.md                     # Installation guide
+├── CLI_USAGE.md                   # CLI documentation
+├── CONTRIBUTING.md                # Contribution guidelines
+└── CODE_OF_CONDUCT.md            # Code of conduct
+```
+
 ## 🛠️ Technology Stack
 
 <div align="center">
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Typer](https://img.shields.io/badge/Typer-CLI-009688?style=for-the-badge&logo=python&logoColor=white)
+![Rich](https://img.shields.io/badge/Rich-Terminal-FF6B6B?style=for-the-badge&logo=python&logoColor=white)
+![Hatch](https://img.shields.io/badge/Hatch-Build-4051B5?style=for-the-badge&logo=python&logoColor=white)
 ![Google Cloud](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Pytest](https://img.shields.io/badge/Pytest-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 
 </div>

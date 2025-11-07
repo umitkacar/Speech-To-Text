@@ -1,0 +1,260 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "speech-to-text-ai"
+version = "1.0.0"
+description = "🎤 Modern Speech Recognition CLI with AI-powered transcription and multi-language support"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Community Contributors", email = ""},
+]
+maintainers = [
+    {name = "Community Contributors", email = ""},
+]
+keywords = [
+    "speech-recognition",
+    "speech-to-text",
+    "voice-recognition",
+    "audio-processing",
+    "ai",
+    "machine-learning",
+    "nlp",
+    "cli",
+    "transcription",
+    "google-speech-api",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+dependencies = [
+    "SpeechRecognition>=3.10.1",
+    "PyAudio>=0.2.14",
+    "pyttsx3>=2.90",
+    "typer[all]>=0.9.0",
+    "rich>=13.7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.12.0",
+    "black>=23.12.0",
+    "ruff>=0.1.9",
+    "mypy>=1.8.0",
+    "pre-commit>=3.6.0",
+    "hatch>=1.9.0",
+]
+whisper = [
+    "openai-whisper>=20231117",
+    "faster-whisper>=1.0.0",
+]
+cloud = [
+    "google-cloud-speech>=2.24.0",
+    "azure-cognitiveservices-speech>=1.35.0",
+    "deepgram-sdk>=3.2.0",
+]
+audio = [
+    "pydub>=0.25.1",
+    "librosa>=0.10.1",
+    "soundfile>=0.12.1",
+    "noisereduce>=3.0.0",
+]
+all = [
+    "speech-to-text-ai[dev,whisper,cloud,audio]",
+]
+
+[project.urls]
+Homepage = "https://github.com/umitkacar/Speech-To-Text"
+Documentation = "https://github.com/umitkacar/Speech-To-Text#readme"
+Repository = "https://github.com/umitkacar/Speech-To-Text"
+"Bug Tracker" = "https://github.com/umitkacar/Speech-To-Text/issues"
+Changelog = "https://github.com/umitkacar/Speech-To-Text/releases"
+
+[project.scripts]
+speech-to-text-ai = "speech_to_text_ai.cli:app"
+stt = "speech_to_text_ai.cli:app"
+
+[tool.hatch.version]
+path = "src/speech_to_text_ai/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/speech_to_text_ai"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/tests",
+    "/README.md",
+    "/LICENSE",
+    "/pyproject.toml",
+]
+
+[tool.hatch.envs.default]
+dependencies = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.12.0",
+]
+
+[tool.hatch.envs.default.scripts]
+test = "pytest {args:tests}"
+test-cov = "pytest --cov=src/speech_to_text_ai --cov-report=term-missing --cov-report=html {args:tests}"
+cov-report = "coverage report"
+cov-html = "coverage html"
+
+[tool.hatch.envs.lint]
+detached = true
+dependencies = [
+    "black>=23.12.0",
+    "ruff>=0.1.9",
+    "mypy>=1.8.0",
+]
+
+[tool.hatch.envs.lint.scripts]
+typing = "mypy --install-types --non-interactive {args:src/speech_to_text_ai tests}"
+style = [
+    "ruff check {args:.}",
+    "black --check --diff {args:.}",
+]
+fmt = [
+    "black {args:.}",
+    "ruff check --fix {args:.}",
+    "style",
+]
+all = [
+    "style",
+    "typing",
+]
+
+# Black configuration
+[tool.black]
+line-length = 120
+target-version = ["py38", "py39", "py310", "py311", "py312"]
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hatch
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+# Ruff configuration
+[tool.ruff]
+line-length = 120
+target-version = "py38"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+    "ARG", # flake8-unused-arguments
+    "SIM", # flake8-simplify
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+    "W191",  # indentation contains tabs
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["speech_to_text_ai"]
+
+# Pytest configuration
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "-ra",
+    "--cov=speech_to_text_ai",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+]
+filterwarnings = [
+    "error",
+    "ignore::UserWarning",
+    "ignore::DeprecationWarning",
+]
+
+# Coverage configuration
+[tool.coverage.run]
+source = ["src"]
+branch = true
+parallel = true
+omit = [
+    "src/speech_to_text_ai/__about__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "no cov",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    "pragma: no cover",
+]
+
+[tool.coverage.paths]
+speech_to_text_ai = ["src/speech_to_text_ai"]
+tests = ["tests"]
+
+# Mypy configuration
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+check_untyped_defs = true
+disallow_untyped_decorators = false
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+follow_imports = "normal"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "speech_recognition.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "pyttsx3.*"
+ignore_missing_imports = true

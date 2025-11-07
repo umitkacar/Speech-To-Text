@@ -1,31 +1,37 @@
-# Core Dependencies
-SpeechRecognition==3.10.1
-PyAudio==0.2.14
-pyttsx3==2.90
+# Core Dependencies (Modern CLI)
+SpeechRecognition>=3.10.1
+PyAudio>=0.2.14
+pyttsx3>=2.90
+typer[all]>=0.9.0
+rich>=13.7.0
 
-# Optional: Advanced Features
-# Uncomment if you want to use these features
+# Development Dependencies
+# Install with: pip install -e ".[dev]"
+# pytest>=7.4.0
+# pytest-cov>=4.1.0
+# black>=23.12.0
+# ruff>=0.1.9
+# mypy>=1.8.0
+# pre-commit>=3.6.0
+# hatch>=1.9.0
 
-# OpenAI Whisper (SOTA 2024)
-# openai-whisper==20231117
-# faster-whisper==1.0.0
+# Optional: OpenAI Whisper (SOTA 2024)
+# Install with: pip install -e ".[whisper]"
+# openai-whisper>=20231117
+# faster-whisper>=1.0.0
 
-# Offline Recognition
-# vosk==0.3.45
-# PocketSphinx==5.0.3
+# Optional: Cloud Services
+# Install with: pip install -e ".[cloud]"
+# google-cloud-speech>=2.24.0
+# azure-cognitiveservices-speech>=1.35.0
+# deepgram-sdk>=3.2.0
 
-# Audio Processing
-# pydub==0.25.1
-# librosa==0.10.1
-# soundfile==0.12.1
-# noisereduce==3.0.0
+# Optional: Audio Processing
+# Install with: pip install -e ".[audio]"
+# pydub>=0.25.1
+# librosa>=0.10.1
+# soundfile>=0.12.1
+# noisereduce>=3.0.0
 
-# Web API Integrations
-# google-cloud-speech==2.24.0
-# azure-cognitiveservices-speech==1.35.0
-# deepgram-sdk==3.2.0
-
-# Development
-# pytest==8.0.0
-# black==24.1.0
-# flake8==7.0.0
+# Note: Use pyproject.toml for dependency management
+# This file is kept for compatibility
