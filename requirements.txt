@@ -1,9 +1,20 @@
 # Core Dependencies (Modern CLI)
+# Install with: pip install -e .
 SpeechRecognition>=3.10.1
-PyAudio>=0.2.14
 pyttsx3>=2.90
-typer[all]>=0.9.0
+typer>=0.9.0
 rich>=13.7.0
+
+# ⚠️  IMPORTANT: PyAudio is OPTIONAL!
+# PyAudio requires system dependencies and may fail to install.
+# The package works WITHOUT PyAudio for non-audio commands.
+#
+# To install PyAudio (for actual speech recognition):
+#   Linux:   sudo apt-get install portaudio19-dev python3-pyaudio
+#            pip install -e ".[audio]"
+#   macOS:   brew install portaudio
+#            pip install -e ".[audio]"
+#   Windows: pip install pipwin && pipwin install pyaudio
 
 # Development Dependencies
 # Install with: pip install -e ".[dev]"
@@ -14,6 +25,14 @@ rich>=13.7.0
 # mypy>=1.8.0
 # pre-commit>=3.6.0
 # hatch>=1.9.0
+
+# Optional: PyAudio (Audio Hardware Support)
+# Install with: pip install -e ".[audio]"
+# PyAudio>=0.2.14
+# pydub>=0.25.1
+# librosa>=0.10.1
+# soundfile>=0.12.1
+# noisereduce>=3.0.0
 
 # Optional: OpenAI Whisper (SOTA 2024)
 # Install with: pip install -e ".[whisper]"
@@ -26,12 +45,7 @@ rich>=13.7.0
 # azure-cognitiveservices-speech>=1.35.0
 # deepgram-sdk>=3.2.0
 
-# Optional: Audio Processing
-# Install with: pip install -e ".[audio]"
-# pydub>=0.25.1
-# librosa>=0.10.1
-# soundfile>=0.12.1
-# noisereduce>=3.0.0
-
-# Note: Use pyproject.toml for dependency management
-# This file is kept for compatibility
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# 📝 NOTE: Use pyproject.toml for dependency management
+#    This file is kept for compatibility with pip install -r
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
