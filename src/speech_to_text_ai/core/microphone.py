@@ -38,7 +38,12 @@ class MicrophoneManager:
             logger.info(f"Found {len(mic_list)} microphone devices")
             return mic_list
         except Exception as e:
-            logger.error(f"Failed to list microphones: {e}")
+            error_msg = str(e)
+            if "pyaudio" in error_msg.lower() or "PyAudio" in error_msg:
+                logger.warning("PyAudio not installed. Install with: pip install PyAudio")
+                logger.warning("Or install audio extras: pip install -e '.[audio]'")
+            else:
+                logger.error(f"Failed to list microphones: {e}")
             return []
 
     def find_device_id(self) -> Optional[int]:

@@ -62,21 +62,38 @@
 ### Prerequisites
 
 ```bash
-# Python 3.7 or higher
+# Python 3.8 or higher
 python3 --version
 ```
 
 ### Installation
 
-#### 🐧 Linux (Ubuntu/Debian)
+#### 🚀 Quick Install (Without Audio Hardware)
 
 ```bash
 # Clone the repository
 git clone https://github.com/umitkacar/Speech-To-Text.git
 cd Speech-To-Text
 
-# Install Python dependencies
-sudo -H pip3 install SpeechRecognition PyAudio pyttsx3
+# Install package (PyAudio optional - see below)
+pip install -e .
+```
+
+> **Note**: PyAudio is optional! You can use the CLI for configuration, language listing, etc. without it.
+> For actual speech recognition, install PyAudio separately (see below).
+
+#### 🐧 Linux (Ubuntu/Debian) - Full Installation
+
+```bash
+# Install system dependencies for PyAudio
+sudo apt-get update
+sudo apt-get install -y portaudio19-dev python3-pyaudio
+
+# Install with audio support
+pip install -e ".[audio]"
+
+# Or install Python dependencies separately
+pip install SpeechRecognition PyAudio pyttsx3 typer rich
 
 # Install system dependencies
 sudo apt-get update
