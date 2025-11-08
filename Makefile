@@ -1,6 +1,9 @@
 # Makefile for Speech-To-Text AI
 
-.PHONY: help install dev clean test test-cov lint format pre-commit build run
+.PHONY: help install dev install-all clean test test-cov test-watch lint format \
+        pre-commit build publish run run-listen run-continuous devices languages \
+        docs update-deps setup-hooks check all verify tox tox-lint tox-type \
+        tox-coverage security quality ci setup-dev info deps-tree
 
 # Default target
 .DEFAULT_GOAL := help
@@ -119,6 +122,39 @@ setup-hooks: ## Setup pre-commit hooks
 check: lint test ## Run linters and tests
 
 all: clean format lint test ## Clean, format, lint, and test
+
+verify: ## Verify development environment setup
+	@echo "$(BLUE)🔍 Verifying development environment...$(NC)"
+	python scripts/verify-setup.py
+
+tox: ## Run tests with tox (all Python versions)
+	@echo "$(BLUE)🧪 Running tox...$(NC)"
+	tox
+
+tox-lint: ## Run linting with tox
+	@echo "$(BLUE)🔍 Running tox lint environment...$(NC)"
+	tox -e lint
+
+tox-type: ## Run type checking with tox
+	@echo "$(BLUE)📝 Running tox type environment...$(NC)"
+	tox -e type
+
+tox-coverage: ## Run coverage with tox
+	@echo "$(BLUE)📊 Running tox coverage environment...$(NC)"
+	tox -e coverage
+
+security: ## Run security checks with bandit
+	@echo "$(BLUE)🔒 Running security checks...$(NC)"
+	bandit -r src/ -c pyproject.toml
+
+quality: lint security test-cov ## Run all quality checks
+
+ci: quality ## Run CI pipeline locally
+	@echo "$(GREEN)✓ CI checks complete$(NC)"
+
+setup-dev: ## Run development setup script
+	@echo "$(BLUE)🔧 Running development setup...$(NC)"
+	bash scripts/setup-dev.sh
 
 info: ## Show project info
 	@echo "$(BLUE)ℹ️  Project Information$(NC)"
