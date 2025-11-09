@@ -53,14 +53,24 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
+    # Testing
     "pytest>=7.4.0",
     "pytest-cov>=4.1.0",
     "pytest-mock>=3.12.0",
+    "pytest-xdist>=3.5.0",  # Parallel testing
+    "pytest-timeout>=2.2.0",  # Test timeouts
+    # Code quality
     "black>=23.12.0",
     "ruff>=0.1.9",
     "mypy>=1.8.0",
     "pre-commit>=3.6.0",
+    # Build system
     "hatch>=1.9.0",
+    # Security
+    "pip-audit>=2.6.0",  # Security auditing
+    "bandit>=1.7.6",  # Security linting
+    # Coverage
+    "coverage[toml]>=7.4.0",
 ]
 whisper = [
     "openai-whisper>=20231117",
@@ -113,13 +123,18 @@ dependencies = [
     "pytest>=7.4.0",
     "pytest-cov>=4.1.0",
     "pytest-mock>=3.12.0",
+    "pytest-xdist>=3.5.0",
+    "pytest-timeout>=2.2.0",
 ]
 
 [tool.hatch.envs.default.scripts]
 test = "pytest {args:tests}"
+test-parallel = "pytest -n auto {args:tests}"  # Parallel testing with all CPUs
 test-cov = "pytest --cov=src/speech_to_text_ai --cov-report=term-missing --cov-report=html {args:tests}"
+test-cov-parallel = "pytest -n auto --cov=src/speech_to_text_ai --cov-report=term-missing --cov-report=html {args:tests}"
 cov-report = "coverage report"
 cov-html = "coverage html"
+audit = "pip-audit"  # Security audit
 
 [tool.hatch.envs.lint]
 detached = true
@@ -199,19 +214,20 @@ known-first-party = ["speech_to_text_ai"]
 minversion = "7.0"
 testpaths = ["tests"]
 pythonpath = ["src"]
-addopts = [
-    "--strict-markers",
-    "--strict-config",
-    "-ra",
-    "--cov=speech_to_text_ai",
-    "--cov-report=term-missing",
-    "--cov-report=html",
-]
+addopts = "-v -ra --strict-markers --strict-config --showlocals --disable-warnings --color=yes"
 filterwarnings = [
     "error",
     "ignore::UserWarning",
     "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
 ]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+    "smoke: marks tests as smoke tests",
+]
+timeout = 300
 
 # Coverage configuration
 [tool.coverage.run]
@@ -237,7 +253,7 @@ tests = ["tests"]
 
 # Mypy configuration
 [tool.mypy]
-python_version = "3.8"
+python_version = "3.9"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = false

@@ -8,7 +8,7 @@ This script checks that all required tools and configurations are properly insta
 import subprocess
 import sys
 from pathlib import Path
-from typing import List, Tuple
+from typing import Tuple
 
 # Colors for terminal output
 GREEN = "\033[92m"
@@ -27,6 +27,7 @@ def check_command(cmd: str, display_name: str = None) -> Tuple[bool, str]:
             capture_output=True,
             text=True,
             timeout=5,
+            check=False,
         )
         if result.returncode == 0:
             version = result.stdout.split("\n")[0]
@@ -154,6 +155,7 @@ def main():
     print(f"{BLUE}📦 Checking Package Installation:{RESET}")
     try:
         import speech_to_text_ai
+
         version = speech_to_text_ai.__version__
         print(f"  {GREEN}✓{RESET} speech-to-text-ai v{version} is installed")
         package_ok = True

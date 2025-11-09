@@ -4,20 +4,21 @@
 Modern command-line interface for speech recognition.
 """
 
-from typing import Optional
 from pathlib import Path
+from typing import Optional
+
 import typer
-from rich.console import Console
-from rich.table import Table
-from rich.panel import Panel
 from rich import print as rprint
+from rich.console import Console
+from rich.panel import Panel
+from rich.table import Table
 
 from speech_to_text_ai import __version__
-from speech_to_text_ai.config.settings import Settings, get_settings
-from speech_to_text_ai.core.recognizer import SpeechRecognizer
+from speech_to_text_ai.config.settings import get_settings
 from speech_to_text_ai.core.microphone import MicrophoneManager
+from speech_to_text_ai.core.recognizer import SpeechRecognizer
 from speech_to_text_ai.core.speaker import TextToSpeech
-from speech_to_text_ai.utils.logger import setup_logging, get_logger
+from speech_to_text_ai.utils.logger import get_logger, setup_logging
 
 # Initialize CLI app
 app = typer.Typer(
@@ -40,7 +41,7 @@ def version_callback(value: bool) -> None:
 
 @app.callback()
 def main(
-    version: bool = typer.Option(
+    version: bool = typer.Option(  # noqa: ARG001
         None,
         "--version",
         "-v",
@@ -140,7 +141,7 @@ def continuous(
     # Callback to save results
     def save_callback(result):
         if output and result.success:
-            with open(output, "a") as f:
+            with output.open("a") as f:
                 f.write(result.text + "\n")
 
     # Start continuous recognition

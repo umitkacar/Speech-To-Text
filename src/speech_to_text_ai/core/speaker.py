@@ -1,7 +1,9 @@
 """Text-to-speech functionality."""
 
 from typing import Optional
+
 import pyttsx3
+
 from speech_to_text_ai.utils.logger import get_logger
 
 logger = get_logger(__name__)

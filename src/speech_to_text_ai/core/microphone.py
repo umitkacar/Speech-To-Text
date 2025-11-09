@@ -1,7 +1,9 @@
 """Microphone management and device selection."""
 
 from typing import List, Optional
+
 import speech_recognition as sr
+
 from speech_to_text_ai.utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -34,7 +36,7 @@ class MicrophoneManager:
             List of microphone device names
         """
         try:
-            mic_list = sr.Microphone.list_microphone_names()
+            mic_list: List[str] = sr.Microphone.list_microphone_names()
             logger.info(f"Found {len(mic_list)} microphone devices")
             return mic_list
         except Exception as e:

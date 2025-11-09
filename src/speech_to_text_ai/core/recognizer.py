@@ -1,7 +1,9 @@
 """Speech recognition core functionality."""
 
-from typing import Optional, Dict, Any
+from typing import Any, Callable, Dict, Optional
+
 import speech_recognition as sr
+
 from speech_to_text_ai.core.microphone import MicrophoneManager
 from speech_to_text_ai.utils.logger import get_logger
 
@@ -133,7 +135,7 @@ class SpeechRecognizer:
     def recognize_continuous(
         self,
         max_iterations: Optional[int] = None,
-        callback: Optional[callable] = None,
+        callback: Optional[Callable[[Any], None]] = None,
     ) -> None:
         """
         Continuously recognize speech until stopped.

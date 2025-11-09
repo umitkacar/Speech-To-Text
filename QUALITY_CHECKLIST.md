@@ -86,65 +86,80 @@ Before releasing a new version:
 ## 🔧 Tool-Specific Checks
 
 ### Black
+
 ```bash
 black --check src/ tests/
 ```
+
 Expected: All files formatted correctly
 
 ### Ruff
+
 ```bash
 ruff check src/ tests/
 ```
+
 Expected: No linting errors
 
 ### Mypy
+
 ```bash
 mypy src/
 ```
+
 Expected: No type errors
 
 ### Pytest
+
 ```bash
 pytest --cov=src/speech_to_text_ai --cov-report=term-missing
 ```
+
 Expected: All tests pass, coverage ≥ 75%
 
 ### Bandit
+
 ```bash
 bandit -r src/
 ```
+
 Expected: No security issues
 
 ### Tox
+
 ```bash
 tox
 ```
+
 Expected: All environments pass
 
 ## 📊 Coverage Requirements
 
-| Component | Minimum Coverage |
-|-----------|-----------------|
-| Overall | 75% |
-| Core modules | 80% |
-| Utils | 70% |
-| CLI | 60% |
+| Component    | Minimum Coverage |
+| ------------ | ---------------- |
+| Overall      | 75%              |
+| Core modules | 80%              |
+| Utils        | 70%              |
+| CLI          | 60%              |
 
 ## 🎨 Code Style Guidelines
 
 ### Python Style (PEP 8)
+
 - Line length: 120 characters
 - Indentation: 4 spaces
 - Quotes: Double quotes for strings
 - Imports: Sorted with isort
 
 ### Naming Conventions
+
 - Classes: `PascalCase`
 - Functions: `snake_case`
 - Constants: `UPPER_SNAKE_CASE`
 - Private methods: `_leading_underscore`
 
 ### Documentation
+
 - Docstring style: Google
 - Type hints: Required
 - Comments: Explain "why", not "what"
@@ -154,24 +169,28 @@ Expected: All environments pass
 For code reviews:
 
 ### ✅ Functionality
+
 - [ ] Code does what it's supposed to do
 - [ ] Edge cases handled
 - [ ] Error handling is appropriate
 - [ ] No unnecessary complexity
 
 ### ✅ Maintainability
+
 - [ ] Code is readable
 - [ ] Functions are small and focused
 - [ ] No code duplication
 - [ ] Proper separation of concerns
 
 ### ✅ Testing
+
 - [ ] Tests are comprehensive
 - [ ] Tests are clear and maintainable
 - [ ] Mock usage is appropriate
 - [ ] Test names are descriptive
 
 ### ✅ Performance
+
 - [ ] No unnecessary computations
 - [ ] Appropriate data structures
 - [ ] Memory usage is reasonable
@@ -193,24 +212,24 @@ Immediately fix if you see:
 Always follow:
 
 1. **DRY** - Don't Repeat Yourself
-2. **KISS** - Keep It Simple, Stupid
-3. **YAGNI** - You Aren't Gonna Need It
-4. **SOLID** principles
-5. **Fail fast** - Validate early
-6. **Type hints** - Always annotate
-7. **Tests first** - TDD when possible
+1. **KISS** - Keep It Simple, Stupid
+1. **YAGNI** - You Aren't Gonna Need It
+1. **SOLID** principles
+1. **Fail fast** - Validate early
+1. **Type hints** - Always annotate
+1. **Tests first** - TDD when possible
 
 ## 📈 Metrics to Track
 
 Monitor these metrics:
 
-| Metric | Target | Tool |
-|--------|--------|------|
-| Test Coverage | ≥ 75% | pytest-cov |
-| Code Complexity | ≤ 10 | ruff (mccabe) |
-| Type Coverage | 100% | mypy |
-| Security Score | A | bandit |
-| Documentation | 100% | interrogate |
+| Metric          | Target | Tool          |
+| --------------- | ------ | ------------- |
+| Test Coverage   | ≥ 75%  | pytest-cov    |
+| Code Complexity | ≤ 10   | ruff (mccabe) |
+| Type Coverage   | 100%   | mypy          |
+| Security Score  | A      | bandit        |
+| Documentation   | 100%   | interrogate   |
 
 ## 🎓 Resources
 
@@ -228,10 +247,11 @@ These checks run automatically:
 - **Tox** - Before release
 
 Run all checks manually:
+
 ```bash
 make all
 ```
 
----
+______________________________________________________________________
 
 **Remember:** Quality is not an act, it's a habit! 🎯

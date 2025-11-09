@@ -1,6 +1,7 @@
 """Tests for microphone management."""
 
 import pytest
+
 from speech_to_text_ai.core.microphone import MicrophoneManager
 
 

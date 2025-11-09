@@ -1,6 +1,5 @@
 """Tests for text-to-speech."""
 
-import pytest
 from speech_to_text_ai.core.speaker import TextToSpeech
 
 

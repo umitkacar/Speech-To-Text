@@ -22,7 +22,7 @@
 
 </div>
 
----
+______________________________________________________________________
 
 ## 🚀 Features
 
@@ -31,6 +31,7 @@
 <td>
 
 ### 🎯 Core Capabilities
+
 - 🗣️ **Real-time Speech Recognition** - Instant voice-to-text conversion
 - 🌍 **Multi-Language Support** - Support for 100+ languages
 - 🎙️ **Microphone Integration** - Easy device selection and management
@@ -43,6 +44,7 @@
 <td>
 
 ### 💡 Advanced Features
+
 - 🧠 **AI-Powered** - Google Cloud AI integration
 - 🔊 **Noise Cancellation** - Ambient noise adjustment
 - 📊 **Custom Sample Rates** - Configurable audio parameters
@@ -55,7 +57,7 @@
 </tr>
 </table>
 
----
+______________________________________________________________________
 
 ## 📦 Quick Start
 
@@ -79,8 +81,8 @@ cd Speech-To-Text
 pip install -e .
 ```
 
-> **Note**: PyAudio is optional! You can use the CLI for configuration, language listing, etc. without it.
-> For actual speech recognition, install PyAudio separately (see below).
+> **Note**: PyAudio is optional! You can use the CLI for configuration, language listing, etc.
+> without it. For actual speech recognition, install PyAudio separately (see below).
 
 #### 🐧 Linux (Ubuntu/Debian) - Full Installation
 
@@ -125,11 +127,12 @@ pip3 install SpeechRecognition PyAudio pyttsx3
 pip install SpeechRecognition PyAudio pyttsx3
 ```
 
-> **Note**: On Windows, you may need to install [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/) for PyAudio.
+> **Note**: On Windows, you may need to install
+> [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/) for PyAudio.
 
 For detailed installation instructions, see [INSTALL.md](INSTALL.md).
 
----
+______________________________________________________________________
 
 ## 💻 Usage
 
@@ -225,9 +228,9 @@ while True:
 
 - [CLI Usage Guide](CLI_USAGE.md) - Complete CLI documentation
 - [Installation Guide](INSTALL.md) - Detailed installation instructions
-- [Legacy Examples](legacy/) - Original Python scripts (google_api_*.py)
+- [Legacy Examples](legacy/) - Original Python scripts (google_api\_\*.py)
 
----
+______________________________________________________________________
 
 ## 🎯 Trending Resources (2024-2025)
 
@@ -235,40 +238,45 @@ while True:
 
 #### Modern AI Models (2024-2025)
 
-| Project | Description | Stars | Tech |
-|---------|-------------|-------|------|
-| [**Whisper**](https://github.com/openai/whisper) | OpenAI's robust speech recognition (SOTA 2024) | ![Stars](https://img.shields.io/github/stars/openai/whisper?style=social) | PyTorch, Transformers |
-| [**Faster Whisper**](https://github.com/guillaumekln/faster-whisper) | Optimized Whisper implementation (4x faster) | ![Stars](https://img.shields.io/github/stars/guillaumekln/faster-whisper?style=social) | CTranslate2 |
-| [**Whisper.cpp**](https://github.com/ggerganov/whisper.cpp) | C++ port of Whisper (edge devices) | ![Stars](https://img.shields.io/github/stars/ggerganov/whisper.cpp?style=social) | C++, WASM |
-| [**Vosk**](https://github.com/alphacep/vosk-api) | Offline speech recognition (100+ languages) | ![Stars](https://img.shields.io/github/stars/alphacep/vosk-api?style=social) | Kaldi |
-| [**SpeechBrain**](https://github.com/speechbrain/speechbrain) | All-in-one speech toolkit | ![Stars](https://img.shields.io/github/stars/speechbrain/speechbrain?style=social) | PyTorch |
-| [**Wav2Vec 2.0**](https://github.com/facebookresearch/fairseq) | Meta's self-supervised speech model | ![Stars](https://img.shields.io/github/stars/facebookresearch/fairseq?style=social) | PyTorch |
-| [**NeMo ASR**](https://github.com/NVIDIA/NeMo) | NVIDIA's conversational AI toolkit | ![Stars](https://img.shields.io/github/stars/NVIDIA/NeMo?style=social) | PyTorch |
+| Project                                                              | Description                                    | Stars                                                                                  | Tech                  |
+| -------------------------------------------------------------------- | ---------------------------------------------- | -------------------------------------------------------------------------------------- | --------------------- |
+| [**Whisper**](https://github.com/openai/whisper)                     | OpenAI's robust speech recognition (SOTA 2024) | ![Stars](https://img.shields.io/github/stars/openai/whisper?style=social)              | PyTorch, Transformers |
+| [**Faster Whisper**](https://github.com/guillaumekln/faster-whisper) | Optimized Whisper implementation (4x faster)   | ![Stars](https://img.shields.io/github/stars/guillaumekln/faster-whisper?style=social) | CTranslate2           |
+| [**Whisper.cpp**](https://github.com/ggerganov/whisper.cpp)          | C++ port of Whisper (edge devices)             | ![Stars](https://img.shields.io/github/stars/ggerganov/whisper.cpp?style=social)       | C++, WASM             |
+| [**Vosk**](https://github.com/alphacep/vosk-api)                     | Offline speech recognition (100+ languages)    | ![Stars](https://img.shields.io/github/stars/alphacep/vosk-api?style=social)           | Kaldi                 |
+| [**SpeechBrain**](https://github.com/speechbrain/speechbrain)        | All-in-one speech toolkit                      | ![Stars](https://img.shields.io/github/stars/speechbrain/speechbrain?style=social)     | PyTorch               |
+| [**Wav2Vec 2.0**](https://github.com/facebookresearch/fairseq)       | Meta's self-supervised speech model            | ![Stars](https://img.shields.io/github/stars/facebookresearch/fairseq?style=social)    | PyTorch               |
+| [**NeMo ASR**](https://github.com/NVIDIA/NeMo)                       | NVIDIA's conversational AI toolkit             | ![Stars](https://img.shields.io/github/stars/NVIDIA/NeMo?style=social)                 | PyTorch               |
 
 #### Real-Time & Production Ready
 
-| Project | Description | Use Case |
-|---------|-------------|----------|
-| [**Deepgram SDK**](https://github.com/deepgram/deepgram-python-sdk) | Production-grade ASR API | Enterprise applications |
-| [**AssemblyAI**](https://github.com/AssemblyAI/assemblyai-python-sdk) | Modern speech-to-text API | Real-time transcription |
-| [**Azure Speech SDK**](https://github.com/Azure-Samples/cognitive-services-speech-sdk) | Microsoft's Speech Services | Cloud integration |
-| [**Amazon Transcribe**](https://aws.amazon.com/transcribe/) | AWS speech recognition | Scalable solutions |
+| Project                                                                                | Description                 | Use Case                |
+| -------------------------------------------------------------------------------------- | --------------------------- | ----------------------- |
+| [**Deepgram SDK**](https://github.com/deepgram/deepgram-python-sdk)                    | Production-grade ASR API    | Enterprise applications |
+| [**AssemblyAI**](https://github.com/AssemblyAI/assemblyai-python-sdk)                  | Modern speech-to-text API   | Real-time transcription |
+| [**Azure Speech SDK**](https://github.com/Azure-Samples/cognitive-services-speech-sdk) | Microsoft's Speech Services | Cloud integration       |
+| [**Amazon Transcribe**](https://aws.amazon.com/transcribe/)                            | AWS speech recognition      | Scalable solutions      |
 
 #### Specialized & Emerging (2024-2025)
 
-| Project | Innovation | GitHub |
-|---------|------------|--------|
-| [**Distil-Whisper**](https://github.com/huggingface/distil-whisper) | 6x faster Whisper variant | ⭐ Trending |
-| [**Seamless M4T**](https://github.com/facebookresearch/seamless_communication) | Multilingual speech translation | Meta AI |
-| [**MMS (Massively Multilingual Speech)**](https://github.com/facebookresearch/fairseq/tree/main/examples/mms) | 1000+ languages support | Meta Research |
-| [**Canary**](https://github.com/NVIDIA/NeMo) | NVIDIA's multilingual ASR | SOTA 2024 |
+| Project                                                                                                       | Innovation                      | GitHub        |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------- | ------------- |
+| [**Distil-Whisper**](https://github.com/huggingface/distil-whisper)                                           | 6x faster Whisper variant       | ⭐ Trending   |
+| [**Seamless M4T**](https://github.com/facebookresearch/seamless_communication)                                | Multilingual speech translation | Meta AI       |
+| [**MMS (Massively Multilingual Speech)**](https://github.com/facebookresearch/fairseq/tree/main/examples/mms) | 1000+ languages support         | Meta Research |
+| [**Canary**](https://github.com/NVIDIA/NeMo)                                                                  | NVIDIA's multilingual ASR       | SOTA 2024     |
 
 ### 🎓 Learning Resources
 
-- 📚 [**Speech Recognition Course**](https://www.deeplearning.ai/courses/natural-language-processing-specialization/) - DeepLearning.AI
-- 🎥 [**Whisper Tutorial Series**](https://www.youtube.com/results?search_query=openai+whisper+tutorial+2024) - Latest tutorials
+- 📚
+  [**Speech Recognition Course**](https://www.deeplearning.ai/courses/natural-language-processing-specialization/)
+  \- DeepLearning.AI
+- 🎥
+  [**Whisper Tutorial Series**](https://www.youtube.com/results?search_query=openai+whisper+tutorial+2024)
+  \- Latest tutorials
 - 📖 [**ASR Papers**](https://paperswithcode.com/task/speech-recognition) - State-of-the-art research
-- 🛠️ [**Hugging Face Audio**](https://huggingface.co/tasks/automatic-speech-recognition) - Pre-trained models
+- 🛠️ [**Hugging Face Audio**](https://huggingface.co/tasks/automatic-speech-recognition) -
+  Pre-trained models
 
 ### 🔧 Development Tools (2024-2025)
 
@@ -279,16 +287,16 @@ while True:
 
 ### ☁️ Cloud Services Comparison (2024-2025)
 
-| Service | Accuracy | Speed | Languages | Free Tier | Best For |
-|---------|----------|-------|-----------|-----------|----------|
-| **Google Cloud Speech** | ⭐⭐⭐⭐⭐ | Fast | 125+ | 60 min/month | General purpose |
-| **Deepgram** | ⭐⭐⭐⭐⭐ | Very Fast | 30+ | $200 credit | Real-time apps |
-| **AssemblyAI** | ⭐⭐⭐⭐⭐ | Fast | 15+ | 5 hours | Transcription |
-| **Azure Speech** | ⭐⭐⭐⭐ | Medium | 100+ | 5 hours | Enterprise |
-| **Amazon Transcribe** | ⭐⭐⭐⭐ | Fast | 35+ | 60 min/month | AWS ecosystem |
-| **Whisper (Self-hosted)** | ⭐⭐⭐⭐⭐ | Medium | 99 | Free | Privacy-first |
+| Service                   | Accuracy   | Speed     | Languages | Free Tier    | Best For        |
+| ------------------------- | ---------- | --------- | --------- | ------------ | --------------- |
+| **Google Cloud Speech**   | ⭐⭐⭐⭐⭐ | Fast      | 125+      | 60 min/month | General purpose |
+| **Deepgram**              | ⭐⭐⭐⭐⭐ | Very Fast | 30+       | $200 credit  | Real-time apps  |
+| **AssemblyAI**            | ⭐⭐⭐⭐⭐ | Fast      | 15+       | 5 hours      | Transcription   |
+| **Azure Speech**          | ⭐⭐⭐⭐   | Medium    | 100+      | 5 hours      | Enterprise      |
+| **Amazon Transcribe**     | ⭐⭐⭐⭐   | Fast      | 35+       | 60 min/month | AWS ecosystem   |
+| **Whisper (Self-hosted)** | ⭐⭐⭐⭐⭐ | Medium    | 99        | Free         | Privacy-first   |
 
----
+______________________________________________________________________
 
 ## 📁 Project Structure
 
@@ -340,7 +348,7 @@ Speech-To-Text/
 
 </div>
 
----
+______________________________________________________________________
 
 ## 🗺️ Roadmap
 
@@ -359,7 +367,7 @@ Speech-To-Text/
 - [ ] 📋 **Speaker diarization** (Who spoke when)
 - [ ] 📋 **Emotion detection** (Sentiment analysis)
 
----
+______________________________________________________________________
 
 ## 🔧 Audio Configuration
 
@@ -383,33 +391,34 @@ amixer
 arecord -l
 ```
 
----
+______________________________________________________________________
 
 ## 🤝 Contributing
 
-Contributions are what make the open source community amazing! Any contributions you make are **greatly appreciated**.
+Contributions are what make the open source community amazing! Any contributions you make are
+**greatly appreciated**.
 
 1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+1. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+1. Push to the Branch (`git push origin feature/AmazingFeature`)
+1. Open a Pull Request
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
----
+______________________________________________________________________
 
 ## 📜 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
----
+______________________________________________________________________
 
 ## 🌟 Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=umitkacar/Speech-To-Text&type=Date)](https://star-history.com/#umitkacar/Speech-To-Text&Date)
 
----
+______________________________________________________________________
 
 ## 📞 Contact & Support
 
@@ -420,7 +429,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 </div>
 
----
+______________________________________________________________________
 
 ## 🙏 Acknowledgments
 
@@ -429,7 +438,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 - [Google Cloud Speech](https://cloud.google.com/speech-to-text) - API provider
 - [PyTTSx3](https://github.com/nateshmbhat/pyttsx3) - Text-to-speech engine
 
----
+______________________________________________________________________
 
 <div align="center">
 

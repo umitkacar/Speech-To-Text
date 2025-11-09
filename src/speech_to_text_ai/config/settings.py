@@ -1,9 +1,9 @@
 """Application settings and configuration."""
 
-from typing import Optional
-from pathlib import Path
-from dataclasses import dataclass, field
 import json
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Optional
 
 
 @dataclass
@@ -60,7 +60,7 @@ class Settings:
         if not config_path.exists():
             return cls()
 
-        with open(config_path, "r") as f:
+        with config_path.open() as f:
             data = json.load(f)
 
         return cls(**data)
@@ -86,7 +86,7 @@ class Settings:
             "log_level": self.log_level,
         }
 
-        with open(config_path, "w") as f:
+        with config_path.open("w") as f:
             json.dump(data, f, indent=2)
 
     def get_language_code(self, lang_short: str) -> Optional[str]:
@@ -99,7 +99,8 @@ class Settings:
         Returns:
             Full language code (e.g., 'en-US', 'tr-TR')
         """
-        return self.languages.get(lang_short.lower())
+        result: Optional[str] = self.languages.get(lang_short.lower())
+        return result
 
 
 # Global settings instance
@@ -116,12 +117,9 @@ def get_settings(config_path: Optional[Path] = None) -> Settings:
     Returns:
         Settings instance
     """
-    global _settings
+    global _settings  # noqa: PLW0603
 
     if _settings is None:
-        if config_path and config_path.exists():
-            _settings = Settings.from_file(config_path)
-        else:
-            _settings = Settings()
+        _settings = Settings.from_file(config_path) if config_path and config_path.exists() else Settings()
 
     return _settings

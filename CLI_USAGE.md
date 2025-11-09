@@ -52,6 +52,7 @@ speech-to-text-ai listen --verbose
 ```
 
 **Examples:**
+
 ```bash
 # English recognition
 speech-to-text-ai listen -l en-US
@@ -85,6 +86,7 @@ speech-to-text-ai continuous --mic "USB Mic" -l tr-TR
 ```
 
 **Examples:**
+
 ```bash
 # English continuous mode
 speech-to-text-ai continuous -l en-US
@@ -115,6 +117,7 @@ speech-to-text-ai interactive --verbose
 ```
 
 **Examples:**
+
 ```bash
 # English interactive mode
 speech-to-text-ai interactive -l en-US
@@ -140,6 +143,7 @@ speech-to-text-ai devices -d
 ```
 
 **Output:**
+
 ```
 ┏━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃ ID   ┃ Device Name                   ┃
@@ -166,6 +170,7 @@ speech-to-text-ai languages -s spanish
 ```
 
 **Output:**
+
 ```
 ┏━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
 ┃ Short Code  ┃ Full Code     ┃ Language             ┃
@@ -194,6 +199,7 @@ speech-to-text-ai config --show --file ~/my-config.json
 ```
 
 **Output:**
+
 ```
 ┏━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┓
 ┃ Setting       ┃ Value             ┃
@@ -230,20 +236,20 @@ speech-to-text-ai config --show --file ~/my-config.json
 
 ## Language Codes
 
-| Language | Code | Short |
-|----------|------|-------|
-| English (US) | en-US | en |
-| Turkish | tr-TR | tr |
-| Spanish | es-ES | es |
-| French | fr-FR | fr |
-| German | de-DE | de |
-| Italian | it-IT | it |
-| Portuguese | pt-PT | pt |
-| Russian | ru-RU | ru |
-| Japanese | ja-JP | ja |
-| Korean | ko-KR | ko |
-| Chinese | zh-CN | zh |
-| Arabic | ar-SA | ar |
+| Language     | Code  | Short |
+| ------------ | ----- | ----- |
+| English (US) | en-US | en    |
+| Turkish      | tr-TR | tr    |
+| Spanish      | es-ES | es    |
+| French       | fr-FR | fr    |
+| German       | de-DE | de    |
+| Italian      | it-IT | it    |
+| Portuguese   | pt-PT | pt    |
+| Russian      | ru-RU | ru    |
+| Japanese     | ja-JP | ja    |
+| Korean       | ko-KR | ko    |
+| Chinese      | zh-CN | zh    |
+| Arabic       | ar-SA | ar    |
 
 ## Advanced Usage
 
@@ -367,9 +373,7 @@ import json
 
 # Run recognition
 result = subprocess.run(
-    ['speech-to-text-ai', 'listen', '-l', 'en-US'],
-    capture_output=True,
-    text=True
+    ["speech-to-text-ai", "listen", "-l", "en-US"], capture_output=True, text=True
 )
 
 print(f"Recognized: {result.stdout}")

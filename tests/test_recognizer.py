@@ -1,8 +1,7 @@
 """Tests for speech recognizer."""
 
-import pytest
-from speech_to_text_ai.core.recognizer import SpeechRecognizer, RecognitionResult
 from speech_to_text_ai.core.microphone import MicrophoneManager
+from speech_to_text_ai.core.recognizer import RecognitionResult, SpeechRecognizer
 
 
 class TestRecognitionResult:

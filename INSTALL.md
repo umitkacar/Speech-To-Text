@@ -60,11 +60,13 @@ brew install espeak
 
 1. Install Python 3.8+ from [python.org](https://www.python.org/downloads/)
 
-2. Install Visual Studio Build Tools:
+1. Install Visual Studio Build Tools:
+
    - Download from [Visual Studio Downloads](https://visualstudio.microsoft.com/downloads/)
    - Select "Desktop development with C++"
 
-3. Install PyAudio:
+1. Install PyAudio:
+
    ```powershell
    pip install pipwin
    pipwin install pyaudio
@@ -149,6 +151,7 @@ speech-to-text-ai languages
 ### PyAudio Installation Issues
 
 **Linux:**
+
 ```bash
 sudo apt-get install python3-dev
 pip install --upgrade pip setuptools wheel
@@ -156,12 +159,14 @@ pip install pyaudio
 ```
 
 **macOS:**
+
 ```bash
 brew install portaudio
 pip install pyaudio
 ```
 
 **Windows:**
+
 ```powershell
 # Use pipwin for easier installation
 pip install pipwin
@@ -180,6 +185,7 @@ sudo usermod -a -G audio $USER
 ### Microphone Access Issues
 
 **Linux:**
+
 ```bash
 # Test microphone
 arecord -l
@@ -188,10 +194,12 @@ aplay test.wav
 ```
 
 **macOS:**
+
 - Go to System Preferences > Security & Privacy > Microphone
 - Enable microphone access for Terminal/iTerm
 
 **Windows:**
+
 - Go to Settings > Privacy > Microphone
 - Enable microphone access for Python
 
@@ -262,6 +270,6 @@ ENTRYPOINT ["speech-to-text-ai"]
 ## Next Steps
 
 1. 📖 Read the [README](README.md) for usage examples
-2. 💻 Try the CLI: `speech-to-text-ai listen`
-3. 🎯 Explore features: `speech-to-text-ai --help`
-4. 🤝 Contribute: See [CONTRIBUTING.md](CONTRIBUTING.md)
+1. 💻 Try the CLI: `speech-to-text-ai listen`
+1. 🎯 Explore features: `speech-to-text-ai --help`
+1. 🤝 Contribute: See [CONTRIBUTING.md](CONTRIBUTING.md)

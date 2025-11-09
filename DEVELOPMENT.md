@@ -119,6 +119,7 @@ pytest -m "not slow"
 import pytest
 from speech_to_text_ai import SpeechRecognizer
 
+
 class TestSpeechRecognizer:
     """Test SpeechRecognizer class."""
 
@@ -224,11 +225,11 @@ pytest --cov=src/speech_to_text_ai --cov-report=xml
 ### Coverage Requirements
 
 | Component | Minimum |
-|-----------|---------|
-| Overall | 75% |
-| Core | 80% |
-| Utils | 70% |
-| CLI | 60% |
+| --------- | ------- |
+| Overall   | 75%     |
+| Core      | 80%     |
+| Utils     | 70%     |
+| CLI       | 60%     |
 
 ## 🏗️ Project Structure
 
@@ -272,6 +273,7 @@ test: add tests for TTS module
 ### Pre-commit Checks
 
 Every commit runs:
+
 - ✅ Black formatting
 - ✅ Ruff linting
 - ✅ isort import sorting
@@ -313,10 +315,9 @@ Always use type hints:
 ```python
 from typing import Optional, List, Dict, Any
 
+
 def process_audio(
-    audio_data: bytes,
-    language: str = "en-US",
-    timeout: Optional[int] = None
+    audio_data: bytes, language: str = "en-US", timeout: Optional[int] = None
 ) -> Dict[str, Any]:
     """Process audio data."""
     pass
@@ -457,24 +458,24 @@ make help             # Show all commands
 ### Code Quality
 
 1. **Write tests first** (TDD)
-2. **Keep functions small** (< 50 lines)
-3. **Use type hints** everywhere
-4. **Document public APIs**
-5. **Handle errors gracefully**
+1. **Keep functions small** (\< 50 lines)
+1. **Use type hints** everywhere
+1. **Document public APIs**
+1. **Handle errors gracefully**
 
 ### Performance
 
 1. **Profile before optimizing**
-2. **Use appropriate data structures**
-3. **Avoid premature optimization**
-4. **Cache expensive operations**
+1. **Use appropriate data structures**
+1. **Avoid premature optimization**
+1. **Cache expensive operations**
 
 ### Security
 
 1. **Never commit secrets**
-2. **Validate all inputs**
-3. **Use secrets module for random**
-4. **Keep dependencies updated**
+1. **Validate all inputs**
+1. **Use secrets module for random**
+1. **Keep dependencies updated**
 
 ## 📚 Resources
 
@@ -505,6 +506,6 @@ make help             # Show all commands
 - 💬 Start a [Discussion](https://github.com/umitkacar/Speech-To-Text/discussions)
 - 📧 Contact maintainers
 
----
+______________________________________________________________________
 
 **Happy Coding! 🚀**
