@@ -1,0 +1,34 @@
+# Bandit configuration for security checks
+# https://bandit.readthedocs.io/
+
+[bandit]
+# Directories to exclude
+exclude_dirs = [
+    '/tests/',
+    '/test/',
+    '/.venv/',
+    '/venv/',
+    '/.tox/',
+    '/build/',
+    '/dist/',
+]
+
+# Tests to skip
+skips = [
+    # B101: assert_used - we use asserts in tests
+    'B101',
+    # B601: paramiko_calls - not applicable
+    'B601',
+]
+
+# Confidence level threshold
+confidence = 'MEDIUM'
+
+# Severity level threshold
+severity = 'LOW'
+
+# Output format
+format = 'screen'
+
+# Show verbose output
+verbose = True

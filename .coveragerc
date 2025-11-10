@@ -1,0 +1,63 @@
+# Coverage.py configuration
+# https://coverage.readthedocs.io/
+
+[run]
+source = src/
+branch = True
+parallel = True
+omit =
+    */tests/*
+    */test_*.py
+    */__pycache__/*
+    */site-packages/*
+    */venv/*
+    */virtualenv/*
+    */.venv/*
+    */.tox/*
+
+[report]
+precision = 2
+show_missing = True
+skip_covered = False
+skip_empty = True
+sort = Cover
+
+# Regexes for lines to exclude from consideration
+exclude_lines =
+    # Standard pragma
+    pragma: no cover
+
+    # Don't complain about missing debug-only code
+    def __repr__
+    def __str__
+
+    # Don't complain if tests don't hit defensive assertion code
+    raise AssertionError
+    raise NotImplementedError
+
+    # Don't complain if non-runnable code isn't run
+    if __name__ == .__main__.:
+    if TYPE_CHECKING:
+    if typing.TYPE_CHECKING:
+
+    # Don't complain about abstract methods
+    @abstractmethod
+    @abc.abstractmethod
+    @typing.overload
+
+    # Don't complain about ellipsis
+    \.\.\.
+
+    # Don't complain about pass
+    pass
+
+[html]
+directory = htmlcov
+title = Speech-To-Text AI Coverage Report
+
+[xml]
+output = coverage.xml
+
+[json]
+output = coverage.json
+pretty_print = True

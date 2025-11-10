@@ -1,0 +1,146 @@
+# Pre-commit hooks configuration
+# See https://pre-commit.com for more information
+
+repos:
+  # General file checks
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.5.0
+  hooks:
+  - id: trailing-whitespace
+    args: [--markdown-linebreak-ext=md]
+  - id: end-of-file-fixer
+  - id: check-yaml
+  - id: check-toml
+  - id: check-json
+  - id: check-added-large-files
+    args: [--maxkb=1000]
+  - id: check-merge-conflict
+  - id: check-case-conflict
+  - id: detect-private-key
+  - id: mixed-line-ending
+  - id: pretty-format-json
+    args: [--autofix, --indent=2, --no-sort-keys]
+
+  # Python code formatting with Black
+- repo: https://github.com/psf/black
+  rev: 23.12.1
+  hooks:
+  - id: black
+    language_version: python3
+    args: [--line-length=120]
+
+  # Python linting with Ruff (faster alternative to flake8, isort, etc.)
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.1.9
+  hooks:
+  - id: ruff
+    args: [--fix, --exit-non-zero-on-fix]
+    exclude: ^(legacy/|scripts/)
+
+  # Python import sorting
+- repo: https://github.com/pycqa/isort
+  rev: 5.13.2
+  hooks:
+  - id: isort
+    args: [--profile=black, --line-length=120]
+
+  # Type checking with mypy
+- repo: https://github.com/pre-commit/mirrors-mypy
+  rev: v1.8.0
+  hooks:
+  - id: mypy
+    args: [--ignore-missing-imports, --no-strict-optional]
+    exclude: ^tests/
+
+  # Security checks with Bandit
+- repo: https://github.com/PyCQA/bandit
+  rev: 1.7.6
+  hooks:
+  - id: bandit
+    args: [-c, pyproject.toml]
+    additional_dependencies: ['bandit[toml]']
+    exclude: ^(tests/|scripts/|legacy/)
+
+  # Security audit with pip-audit
+- repo: https://github.com/pypa/pip-audit
+  rev: v2.6.3
+  hooks:
+  - id: pip-audit
+    args: [--require-hashes, --disable-pip]
+    stages: [manual]      # Run manually with: pre-commit run pip-audit --all-files --hook-stage manual
+
+  # Run tests with pytest and xdist (parallel)
+- repo: local
+  hooks:
+  - id: pytest-check
+    name: pytest-check
+    entry: pytest
+    language: system
+    pass_filenames: false
+    always_run: true
+    args: [-n, auto, --tb=short, -v]
+    stages: [manual]      # Run manually: pre-commit run pytest-check --all-files --hook-stage manual
+
+  # Coverage check
+- repo: local
+  hooks:
+  - id: coverage-check
+    name: coverage-check
+    entry: pytest
+    language: system
+    pass_filenames: false
+    always_run: true
+    args: [--cov=src/speech_to_text_ai, --cov-report=term-missing, --cov-report=html, --cov-fail-under=70]
+    stages: [manual]      # Run manually: pre-commit run coverage-check --all-files --hook-stage manual
+
+  # Check for common misspellings
+- repo: https://github.com/codespell-project/codespell
+  rev: v2.2.6
+  hooks:
+  - id: codespell
+    args: [--ignore-words-list=crate, wit, incase, ggogle]
+    exclude: ^(legacy/|INSTALL\.md)
+
+  # Markdown formatting
+- repo: https://github.com/executablebooks/mdformat
+  rev: 0.7.17
+  hooks:
+  - id: mdformat
+    additional_dependencies:
+    - mdformat-gfm
+    - mdformat-black
+    args: [--wrap=100]
+
+  # YAML formatting
+- repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+  rev: v2.11.0
+  hooks:
+  - id: pretty-format-yaml
+    args: [--autofix, --indent=2]
+
+# Configuration for specific hooks
+default_language_version:
+  python: python3.11
+
+# Global excludes
+exclude: |
+  (?x)^(
+      \.git/|
+      \.hatch/|
+      \.mypy_cache/|
+      \.pytest_cache/|
+      \.venv/|
+      __pycache__/|
+      build/|
+      dist/|
+      .*\.egg-info/
+  )
+
+# Run stages
+default_stages: [pre-commit, pre-push]
+
+# Fail fast - stop on first failure
+fail_fast: false
+
+# Minimum pre-commit version
+minimum_pre_commit_version: 3.0.0
